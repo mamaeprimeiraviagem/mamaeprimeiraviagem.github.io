@@ -1,0 +1,19 @@
+{
+  "name": "Mamãe de Primeira Viagem",
+  "short_name": "Mamãe 1ª Viagem",
+  "description": "Guias práticos sobre gravidez, maternidade, enxoval e cuidados com o bebê, com linguagem simples e fontes confiáveis.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fffafc",
+  "theme_color": "#c94f7c",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/assets/img/logo-mamae-premium.png",
+      "sizes": "1080x1080",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

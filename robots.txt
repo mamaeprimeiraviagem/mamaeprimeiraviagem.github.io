@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mamaeprimeiraviagem.github.io/sitemap.xml
