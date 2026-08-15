@@ -1,4 +1,30 @@
 (() => {
+  const affiliatePlatform = (href) => {
+    const host = new URL(href, window.location.href).hostname.toLowerCase();
+    if (host.includes('hotmart.com')) return 'hotmart';
+    if (host.includes('shopee.com')) return 'shopee';
+    if (host.includes('amazon.com.br') || host === 'amzn.to') return 'amazon';
+    return '';
+  };
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+    const platform = affiliatePlatform(link.href);
+    if (!platform) return;
+
+    const details = {
+      affiliate_platform: platform,
+      link_url: link.href,
+      link_text: (link.textContent || '').trim(),
+      product_id: link.dataset.productId || '',
+      page_path: window.location.pathname,
+      transport_type: 'beacon'
+    };
+    window.gtag?.('event', 'affiliate_click', details);
+    if (platform === 'hotmart') window.gtag?.('event', 'click_curso_hotmart', details);
+  });
+
   const agent = document.querySelector('.sales-agent');
   if (!agent) return;
 
