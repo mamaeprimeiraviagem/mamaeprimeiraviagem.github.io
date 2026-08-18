@@ -46,17 +46,9 @@
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', META_PIXEL_ID);
     fbq('track', 'PageView');
-    fbq('track', 'ViewContent', {
-      content_name: 'Curso Mãe Organizada Completo',
-      content_type: 'product',
-      value: 97.00,
-      currency: 'BRL'
-    });
   }
 
   // ===== UTM passthrough para o checkout Hotmart =====
-  // Repassa utm_source/utm_medium/utm_campaign/utm_content da URL da landing
-  // page para o link de checkout, pra dar pra rastrear qual anúncio vendeu.
   (function() {
     var params = new URLSearchParams(window.location.search);
     var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
@@ -83,8 +75,6 @@
       page_path: window.location.pathname,
       transport_type: 'beacon'
     });
-    // InitiateCheckout só dispara no clique real do botão de compra —
-    // Purchase fica só pra integração de confirmação real da Hotmart (não implementada aqui).
     if (typeof fbq === 'function') {
       fbq('track', 'InitiateCheckout', {
         content_name: 'Curso Mãe Organizada Completo',

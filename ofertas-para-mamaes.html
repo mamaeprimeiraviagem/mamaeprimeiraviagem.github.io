@@ -25,7 +25,7 @@
 <meta name="twitter:image" content="https://mamaeprimeiraviagem.github.io/assets/img/logo-mamae-premium.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Ofertas para Mamães | Mamãe de Primeira Viagem", "headline": "Ofertas para Mamães | Mamãe de Primeira Viagem", "description": "Guias práticos sobre gravidez, maternidade, enxoval e cuidados com o bebê, com linguagem simples e fontes confiáveis.", "url": "https://mamaeprimeiraviagem.github.io/ofertas-para-mamaes.html", "image": "https://mamaeprimeiraviagem.github.io/assets/img/logo-mamae-premium.png", "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Mamãe de Primeira Viagem"}, "publisher": {"@type": "Organization", "name": "Mamãe de Primeira Viagem", "logo": {"@type": "ImageObject", "url": "https://mamaeprimeiraviagem.github.io/assets/img/logo-mamae-premium.png"}}}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%91%B6</text></svg>">
-<link rel="stylesheet" href="style.css?v=20260815-ofertas">
+<link rel="stylesheet" href="style.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92HLGPSF5Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -33,10 +33,41 @@
   gtag('js', new Date());
   gtag('config', 'G-92HLGPSF5Q');
 
+  // ===== Meta Pixel =====
+  // TODO: cole aqui o seu Pixel ID (Gerenciador de Eventos > Pixels) antes de rodar
+  // a campanha. Enquanto META_PIXEL_ID estiver vazio, nenhum código de pixel é
+  // carregado — não inventamos um ID.
+  var META_PIXEL_ID = '';
+  if (META_PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
+  // ===== UTM passthrough para o checkout Hotmart =====
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    var utmParams = new URLSearchParams();
+    utmKeys.forEach(function(k) {
+      if (params.get(k)) utmParams.set(k, params.get(k));
+    });
+    if ([...utmParams].length === 0) return;
+    document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(a) {
+      var url = new URL(a.href);
+      utmParams.forEach(function(v, k) { url.searchParams.set(k, v); });
+      a.href = url.toString();
+    });
+  })();
+
   // Registra toda saída para o checkout do Curso Mãe Organizada.
   // O listener delegado também cobre botões inseridos dinamicamente pelo agente de vendas.
   document.addEventListener('click', function(event) {
-    const link = event.target.closest('a[href*="go.hotmart.com"]');
+    const link = event.target.closest('a[href*="hotmart.com"]');
     if (!link) return;
     gtag('event', 'click_curso_hotmart', {
       link_url: link.href,
@@ -44,6 +75,13 @@
       page_path: window.location.pathname,
       transport_type: 'beacon'
     });
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Curso Mãe Organizada Completo',
+        value: 97.00,
+        currency: 'BRL'
+      });
+    }
   });
 </script>
 </head>
@@ -110,39 +148,6 @@
   <img src="assets/img/shopee-colmeias-bebe.png" alt="Colmeias organizadoras com roupas de bebê em uma gaveta" loading="lazy">
 </section>
 
-
-<section id="bolsa-maternidade-shopee" class="offer-feature">
-  <div class="offer-feature-copy">
-    <span class="offer-badge">ACHADINHO PARA A MATERNIDADE</span>
-    <h2>Kit de bolsas maternidade para organizar o passeio</h2>
-    <p>Opção com 2 ou 3 peças para separar roupas, fraldas e acessórios do bebê na maternidade e nos passeios.</p>
-    <ul class="offer-checks">
-      <li>Mais de 8 mil vendas na Shopee no momento da seleção</li>
-      <li>Avaliação 4,8 no momento da seleção</li>
-      <li>Confira as opções de kit, cores, medidas e materiais no anúncio</li>
-      <li>Preço e disponibilidade podem mudar</li>
-    </ul>
-    <a href="https://s.shopee.com.br/3LQ2BPqlxR" target="_blank" rel="nofollow noopener sponsored" class="btn-comprar btn-destaque" data-product-id="16584106768">Ver preço atualizado na Shopee</a>
-  </div>
-  <img src="https://down-bs-br.img.susercontent.com/br-11134207-7r98o-m6isiogcwmsn3a.webp" alt="Kit de bolsas maternidade para levar roupas, fraldas e acessórios do bebê" loading="lazy">
-</section>
-
-<section id="trocador-portatil-shopee" class="offer-feature">
-  <div class="offer-feature-copy">
-    <span class="offer-badge">PRATICIDADE NA TROCA FORA DE CASA</span>
-    <h2>Trocador portátil impermeável para bebê</h2>
-    <p>Uma opção dobrável para levar na bolsa e criar uma superfície prática durante a troca do bebê em passeios e viagens.</p>
-    <ul class="offer-checks">
-      <li>Modelo portátil e impermeável</li>
-      <li>Avaliação 4,8 com 28 avaliações no momento da seleção</li>
-      <li>61 unidades vendidas no momento da seleção</li>
-      <li>Consulte estampa, preço e disponibilidade antes da compra</li>
-    </ul>
-    <a href="https://s.shopee.com.br/20ug4p9Tqg" target="_blank" rel="nofollow noopener sponsored" class="btn-comprar btn-destaque">Ver preço atualizado na Shopee</a>
-  </div>
-  <img src="assets/img/shopee-trocador-portatil.jpg" alt="Trocador portátil impermeável para bebê aberto e dobrado" loading="lazy">
-</section>
-
 <section id="amazon" class="amazon-offers">
   <span class="offers-kicker">COMPRAS MAIS CONSCIENTES</span>
   <h2>Comece pelo que realmente será usado</h2>
@@ -164,6 +169,9 @@
 </section>
 
 </main>
+<a class="whatsapp-float" href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais." target="_blank" rel="nofollow noopener" aria-label="Falar no WhatsApp" onclick="window.gtag&amp;&amp;gtag('event','whatsapp_click',{origem:'blog',page_path:window.location.pathname})">
+  <span aria-hidden="true">💬</span>
+</a>
 <section class="sales-agent" data-root="" aria-label="Assistente de compras">
   <button class="sales-agent-toggle" type="button" aria-expanded="false" aria-controls="sales-agent-panel">
     <span aria-hidden="true">💗</span> Posso ajudar?

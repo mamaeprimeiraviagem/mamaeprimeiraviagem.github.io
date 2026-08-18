@@ -33,10 +33,41 @@
   gtag('js', new Date());
   gtag('config', 'G-92HLGPSF5Q');
 
+  // ===== Meta Pixel =====
+  // TODO: cole aqui o seu Pixel ID (Gerenciador de Eventos > Pixels) antes de rodar
+  // a campanha. Enquanto META_PIXEL_ID estiver vazio, nenhum código de pixel é
+  // carregado — não inventamos um ID.
+  var META_PIXEL_ID = '';
+  if (META_PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
+  // ===== UTM passthrough para o checkout Hotmart =====
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    var utmParams = new URLSearchParams();
+    utmKeys.forEach(function(k) {
+      if (params.get(k)) utmParams.set(k, params.get(k));
+    });
+    if ([...utmParams].length === 0) return;
+    document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(a) {
+      var url = new URL(a.href);
+      utmParams.forEach(function(v, k) { url.searchParams.set(k, v); });
+      a.href = url.toString();
+    });
+  })();
+
   // Registra toda saída para o checkout do Curso Mãe Organizada.
   // O listener delegado também cobre botões inseridos dinamicamente pelo agente de vendas.
   document.addEventListener('click', function(event) {
-    const link = event.target.closest('a[href*="go.hotmart.com"]');
+    const link = event.target.closest('a[href*="hotmart.com"]');
     if (!link) return;
     gtag('event', 'click_curso_hotmart', {
       link_url: link.href,
@@ -44,6 +75,13 @@
       page_path: window.location.pathname,
       transport_type: 'beacon'
     });
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Curso Mãe Organizada Completo',
+        value: 97.00,
+        currency: 'BRL'
+      });
+    }
   });
 </script>
 </head>
@@ -75,56 +113,6 @@
   <a href="checklist-enxoval-gratis.html" class="btn-secundario">Baixar Checklist Enxoval Essencial grátis (PDF)</a>
 </div>
 <article class="card" id="artigos">
-  <img class="card-img" src="assets/img/3988431.jpg" alt="Guarda-Roupa Cápsula da Gestante: Peças que Combinam Entre Si">
-  <h2><a href="artigos/guarda-roupa-capsula-da-gestante.html">Guarda-Roupa Cápsula da Gestante: Peças que Combinam Entre Si</a></h2>
-  <p>Monte um guarda-roupa cápsula para a gestação com poucas peças confortáveis, combinações fáceis e compras sem desperdício.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/37185810.jpg" alt="Casa Pronta para a Chegada do Bebê: Checklist por Cômodo">
-  <h2><a href="artigos/casa-pronta-para-chegada-do-bebe.html">Casa Pronta para a Chegada do Bebê: Checklist por Cômodo</a></h2>
-  <p>Organize quarto, banheiro, cozinha e sala antes da chegada do bebê com um checklist simples e sem compras desnecessárias.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/4642687.jpg" alt="Como Dividir as Tarefas e Montar uma Rede de Apoio">
-  <h2><a href="artigos/dividir-tarefas-e-montar-rede-de-apoio.html">Como Dividir as Tarefas e Montar uma Rede de Apoio</a></h2>
-  <p>Um plano prático para dividir tarefas, combinar ajuda e reduzir a sobrecarga da família depois da chegada do bebê.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/28680700.jpg" alt="Rotina da Casa com Recém-Nascido: Organização Realista">
-  <h2><a href="artigos/rotina-da-casa-com-recem-nascido.html">Rotina da Casa com Recém-Nascido: Organização Realista</a></h2>
-  <p>Organize a casa com um recém-nascido usando prioridades diárias, estações práticas e uma rotina que aceita imprevistos.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/4894856.jpg" alt="Cantinho de Amamentação: Como Montar com Conforto">
-  <h2><a href="artigos/cantinho-de-amamentacao-confortavel.html">Cantinho de Amamentação: Como Montar com Conforto</a></h2>
-  <p>Monte um cantinho de amamentação confortável e funcional usando móveis que você já tem e uma cesta com itens essenciais.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/15501373.jpg" alt="Mochila do Bebê para a Creche: Checklist do Primeiro Dia">
-  <h2><a href="artigos/mochila-do-bebe-para-creche.html">Mochila do Bebê para a Creche: Checklist do Primeiro Dia</a></h2>
-  <p>Prepare a mochila do bebê para a creche com roupas, higiene, identificação e um sistema simples de reposição diária.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/6583538.jpg" alt="Volta ao Trabalho Depois do Bebê: Plano de Organização">
-  <h2><a href="artigos/volta-ao-trabalho-depois-do-bebe.html">Volta ao Trabalho Depois do Bebê: Plano de Organização</a></h2>
-  <p>Planeje a volta ao trabalho depois do bebê com uma adaptação gradual, divisão de tarefas e rotina preparada para imprevistos.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/12588994.jpg" alt="Como Organizar Fotos e Lembranças do Primeiro Ano">
-  <h2><a href="artigos/organizar-fotos-e-lembrancas-do-primeiro-ano.html">Como Organizar Fotos e Lembranças do Primeiro Ano</a></h2>
-  <p>Crie um sistema simples para organizar fotos, vídeos e lembranças do primeiro ano do bebê sem acumular arquivos perdidos.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/37185810.jpg" alt="Brinquedos do Bebê: Como Organizar por Fase e Espaço">
-  <h2><a href="artigos/organizar-brinquedos-do-bebe-por-fase.html">Brinquedos do Bebê: Como Organizar por Fase e Espaço</a></h2>
-  <p>Organize os brinquedos do bebê por fase, frequência de uso e espaço disponível com um sistema simples de rodízio.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/14997907.jpg" alt="Festa de 1 Ano Simples e Econômica: Planejamento Completo">
-  <h2><a href="artigos/festa-de-1-ano-simples-e-economica.html">Festa de 1 Ano Simples e Econômica: Planejamento Completo</a></h2>
-  <p>Planeje uma festa de 1 ano simples e econômica definindo orçamento, convidados, comida, decoração e cronograma.</p>
-</article>
-<article class="card">
   <img class="card-img" src="assets/img/15511394.jpg" alt="Enxoval Completo do Bebê: Lista Item por Item (2026)">
   <h2><a href="artigos/enxoval-completo-bebe.html">Enxoval Completo do Bebê: Lista Item por Item (2026)</a></h2>
   <p>Lista completa e organizada do enxoval do bebê: roupas, higiene, quarto e alimentação, com quantidades recomendadas.</p>
@@ -239,32 +227,10 @@
   <h2><a href="artigos/viajar-de-aviao-com-bebe-checklist.html">Viajar de Avião com Bebê: Checklist Completo</a></h2>
   <p>O que levar e como se preparar para a primeira viagem de avião com o bebê.</p>
 </article>
-<article class="card">
-  <img class="card-img" src="assets/img/37185810.jpg" alt="Como Organizar a Cômoda do Bebê de um Jeito Prático">
-  <h2><a href="artigos/organizar-comoda-do-bebe.html">Como Organizar a Cômoda do Bebê de um Jeito Prático</a></h2>
-  <p>Aprenda a separar roupas, fraldas e acessórios na cômoda do bebê para facilitar as trocas e acompanhar cada tamanho.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/15511394.jpg" alt="Como Lavar e Guardar as Roupas do Bebê Antes do Nascimento">
-  <h2><a href="artigos/lavar-e-guardar-roupas-do-bebe.html">Como Lavar e Guardar as Roupas do Bebê Antes do Nascimento</a></h2>
-  <p>Passo a passo simples para lavar, secar e guardar as roupas do bebê antes do primeiro uso, sem exagerar nos produtos.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/3988431.jpg" alt="Chá de Bebê: Lista de Presentes Úteis sem Desperdício">
-  <h2><a href="artigos/cha-de-bebe-lista-de-presentes.html">Chá de Bebê: Lista de Presentes Úteis sem Desperdício</a></h2>
-  <p>Monte uma lista de chá de bebê equilibrada, com tamanhos variados e itens que realmente serão usados na rotina.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/kit-previa-orcamento.jpg" alt="Planejamento Financeiro para a Chegada do Bebê">
-  <h2><a href="artigos/planejamento-financeiro-chegada-do-bebe.html">Planejamento Financeiro para a Chegada do Bebê</a></h2>
-  <p>Organize os gastos da chegada do bebê em despesas únicas, mensais e futuras usando um orçamento familiar simples.</p>
-</article>
-<article class="card">
-  <img class="card-img" src="assets/img/19426923.jpg" alt="Cantinho de Troca do Bebê: Como Montar com Segurança">
-  <h2><a href="artigos/cantinho-de-troca-do-bebe.html">Cantinho de Troca do Bebê: Como Montar com Segurança</a></h2>
-  <p>Veja o que deixar no cantinho de troca do bebê e como organizar fraldas, roupas e higiene com praticidade e segurança.</p>
-</article>
 </main>
+<a class="whatsapp-float" href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais." target="_blank" rel="nofollow noopener" aria-label="Falar no WhatsApp" onclick="window.gtag&amp;&amp;gtag('event','whatsapp_click',{origem:'blog',page_path:window.location.pathname})">
+  <span aria-hidden="true">💬</span>
+</a>
 <section class="sales-agent" data-root="" aria-label="Assistente de compras">
   <button class="sales-agent-toggle" type="button" aria-expanded="false" aria-controls="sales-agent-panel">
     <span aria-hidden="true">💗</span> Posso ajudar?

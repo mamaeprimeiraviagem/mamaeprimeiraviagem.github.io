@@ -36,7 +36,7 @@
   // Registra toda saída para o checkout do Curso Mãe Organizada.
   // O listener delegado também cobre botões inseridos dinamicamente pelo agente de vendas.
   document.addEventListener('click', function(event) {
-    const link = event.target.closest('a[href*="go.hotmart.com"]');
+    const link = event.target.closest('a[href*="hotmart.com"]');
     if (!link) return;
     gtag('event', 'click_curso_hotmart', {
       link_url: link.href,

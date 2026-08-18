@@ -438,6 +438,43 @@ body:not(:has(main > .card)) main {
   .product-gallery { grid-template-columns: 1fr; }
 }
 
+.whatsapp-float {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 40;
+  width: 3.4rem;
+  height: 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 8px 26px rgba(37,211,102,.4);
+  font-size: 1.6rem;
+  text-decoration: none;
+  transition: transform .15s ease;
+}
+.whatsapp-float:hover { transform: scale(1.06); }
+
+.btn-whatsapp {
+  display: inline-block;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 1rem 1.8rem;
+  border-radius: 999px;
+  border: none;
+  margin-left: .6rem;
+}
+.btn-whatsapp:hover { background: #1ebc59; }
+
+@media (max-width: 720px) {
+  .whatsapp-float { left: .6rem; bottom: .6rem; width: 3rem; height: 3rem; font-size: 1.4rem; }
+  .btn-whatsapp { margin-left: 0; margin-top: .6rem; }
+}
+
 .sales-agent { position: fixed; right: 1rem; bottom: 5.5rem; z-index: 40; font-family: inherit; }
 .sales-agent-toggle {
   border: 0; border-radius: 999px; padding: .85rem 1.1rem; cursor: pointer;
@@ -472,83 +509,3 @@ body:not(:has(main > .card)) main {
   .sales-agent-panel { position: fixed; right: .5rem; bottom: 4.2rem; width: calc(100vw - 1rem); max-height: calc(100vh - 5rem); overflow-y: auto; }
   #install-app { bottom: 4.8rem; }
 }
-
-/* Página de ofertas: layout e imagens compactas, sem corte */
-.offers-hero {
-  position: relative;
-  overflow: hidden;
-  margin: -.5rem 0 2rem;
-  padding: clamp(2rem, 7vw, 4.5rem) clamp(1.4rem, 6vw, 3.8rem);
-  border-radius: 28px;
-  text-align: center;
-  background: linear-gradient(135deg, #fff0f6 0%, #f7fbff 48%, #dff4ff 100%);
-  box-shadow: 0 18px 50px rgba(83,92,128,.12);
-}
-.offers-hero::before,
-.offers-hero::after { content: ""; position: absolute; border-radius: 50%; background: rgba(246,165,192,.23); }
-.offers-hero::before { width: 180px; height: 180px; top: -90px; left: -60px; }
-.offers-hero::after { width: 140px; height: 140px; right: -45px; bottom: -70px; background: rgba(91,190,235,.18); }
-.offers-kicker { display: block; font-size: .74rem; font-weight: 800; letter-spacing: .14em; color: #b3446c; margin-bottom: .7rem; }
-.offers-hero h2 { position: relative; font-size: clamp(2rem,6vw,3.45rem); line-height: 1.05; margin: .4rem auto 1rem; color: #80445f; max-width: 650px; }
-.offers-hero p { position: relative; max-width: 580px; margin: 0 auto 1.4rem; font-size: 1.08rem; }
-.offers-hero small { display: block; margin-top: 1rem; color: #6f6b75; }
-.offers-actions { position: relative; display: flex; gap: .8rem; justify-content: center; align-items: center; flex-wrap: wrap; }
-.btn-destaque { padding: 1rem 1.8rem; box-shadow: 0 10px 25px rgba(209,72,126,.28); transition: transform .2s ease, box-shadow .2s ease; }
-.btn-destaque:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(209,72,126,.34); }
-.btn-secundario { display: inline-block; padding: .9rem 1.4rem; border: 2px solid #d1487e; border-radius: 999px; text-decoration: none; font-weight: 700; background: #fff; }
-
-.offer-feature {
-  display: grid;
-  grid-template-columns: minmax(0,1.35fr) minmax(220px,340px);
-  align-items: center;
-  gap: clamp(1.25rem,4vw,3rem);
-  margin: 2rem 0;
-  padding: clamp(1.25rem,3vw,2rem);
-  border: 1px solid rgba(201,79,124,.12);
-  border-radius: 24px;
-  background: rgba(255,255,255,.92);
-  box-shadow: 0 10px 30px rgba(110,81,96,.08);
-}
-.offer-feature h2 { font-size: clamp(1.8rem,5vw,2.7rem); margin: .55rem 0; }
-.offer-feature > img {
-  display: block;
-  width: 100%;
-  max-width: 320px;
-  height: 280px;
-  padding: .75rem;
-  object-fit: contain;
-  object-position: center;
-  justify-self: center;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(110,81,96,.10);
-}
-.offer-badge { display: inline-block; background: #e7f6fc; color: #39718c; padding: .35rem .7rem; border-radius: 999px; font-size: .72rem; font-weight: 800; letter-spacing: .08em; }
-.offer-checks { list-style: none; padding: 0; margin: 1.3rem 0; }
-.offer-checks li { padding: .42rem 0; }
-.offer-checks li::before { content: "✓"; display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; margin-right: .55rem; background: #dff4e7; color: #28764a; font-weight: 900; }
-.offer-price { display: flex; align-items: flex-end; gap: .65rem; margin: 1.1rem 0; }
-.offer-price span { color: #777; font-size: .88rem; }
-.offer-price strong { font-size: 2.1rem; line-height: 1; color: #b3446c; }
-
-.amazon-offers { padding: 2.2rem 0; }
-.amazon-offers > h2 { font-size: clamp(1.8rem,5vw,2.7rem); margin: .4rem 0; }
-.offers-intro { max-width: 620px; color: #666; }
-.offer-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 1.4rem; }
-.offer-grid article { background: linear-gradient(145deg,#fff,#fff5f8); border: 1px solid #f3dce5; border-radius: 18px; padding: 1.4rem; box-shadow: 0 6px 18px rgba(0,0,0,.05); }
-.offer-grid article > span { font-size: .75rem; font-weight: 900; color: #4d94b4; }
-.offer-grid h3 { font-size: 1.25rem; color: #80445f; margin: .35rem 0; }
-.offer-grid p { font-size: .93rem; color: #666; }
-.offer-grid a { display: inline-block; margin-top: .4rem; font-weight: 800; text-decoration: none; }
-.affiliate-notice { border-left: 5px solid #6ab4d3; background: #eef9fd; padding: 1rem 1.2rem; border-radius: 8px; font-size: .88rem; color: #555; }
-.final-offer { text-align: center; margin: 2.5rem 0 1rem; padding: 2.4rem 1.4rem; border-radius: 22px; background: #6a7ba2; color: #fff; }
-.final-offer span { font-size: .85rem; letter-spacing: .05em; }
-.final-offer h2 { color: #fff; margin: .35rem 0 1.2rem; font-size: 2rem; }
-
-@media (max-width: 700px) {
-  .offer-feature { grid-template-columns: 1fr; }
-  .offer-feature > img { order: -1; max-width: 250px; height: 220px; }
-  .offer-grid { grid-template-columns: 1fr; }
-  .offers-actions a { width: 100%; }
-}
-

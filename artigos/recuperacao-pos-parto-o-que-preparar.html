@@ -33,10 +33,41 @@
   gtag('js', new Date());
   gtag('config', 'G-92HLGPSF5Q');
 
+  // ===== Meta Pixel =====
+  // TODO: cole aqui o seu Pixel ID (Gerenciador de Eventos > Pixels) antes de rodar
+  // a campanha. Enquanto META_PIXEL_ID estiver vazio, nenhum código de pixel é
+  // carregado — não inventamos um ID.
+  var META_PIXEL_ID = '';
+  if (META_PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
+  // ===== UTM passthrough para o checkout Hotmart =====
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    var utmParams = new URLSearchParams();
+    utmKeys.forEach(function(k) {
+      if (params.get(k)) utmParams.set(k, params.get(k));
+    });
+    if ([...utmParams].length === 0) return;
+    document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(a) {
+      var url = new URL(a.href);
+      utmParams.forEach(function(v, k) { url.searchParams.set(k, v); });
+      a.href = url.toString();
+    });
+  })();
+
   // Registra toda saída para o checkout do Curso Mãe Organizada.
   // O listener delegado também cobre botões inseridos dinamicamente pelo agente de vendas.
   document.addEventListener('click', function(event) {
-    const link = event.target.closest('a[href*="go.hotmart.com"]');
+    const link = event.target.closest('a[href*="hotmart.com"]');
     if (!link) return;
     gtag('event', 'click_curso_hotmart', {
       link_url: link.href,
@@ -44,6 +75,13 @@
       page_path: window.location.pathname,
       transport_type: 'beacon'
     });
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Curso Mãe Organizada Completo',
+        value: 97.00,
+        currency: 'BRL'
+      });
+    }
   });
 </script>
 </head>
@@ -140,6 +178,9 @@ cicatrização.</p>
 </ul>
 <div class="ad-slot"><!-- espaço reservado para anúncio (AdSense) após aprovação --></div>
 </main>
+<a class="whatsapp-float" href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais." target="_blank" rel="nofollow noopener" aria-label="Falar no WhatsApp" onclick="window.gtag&amp;&amp;gtag('event','whatsapp_click',{origem:'blog',page_path:window.location.pathname})">
+  <span aria-hidden="true">💬</span>
+</a>
 <section class="sales-agent" data-root="../" aria-label="Assistente de compras">
   <button class="sales-agent-toggle" type="button" aria-expanded="false" aria-controls="sales-agent-panel">
     <span aria-hidden="true">💗</span> Posso ajudar?
