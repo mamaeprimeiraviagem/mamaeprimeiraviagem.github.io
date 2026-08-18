@@ -33,10 +33,49 @@
   gtag('js', new Date());
   gtag('config', 'G-92HLGPSF5Q');
 
+  // ===== Meta Pixel =====
+  // TODO: cole aqui o seu Pixel ID (Gerenciador de Eventos > Pixels) antes de rodar
+  // a campanha. Enquanto META_PIXEL_ID estiver vazio, nenhum código de pixel é
+  // carregado — não inventamos um ID.
+  var META_PIXEL_ID = '';
+  if (META_PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'Curso Mãe Organizada Completo',
+      content_type: 'product',
+      value: 97.00,
+      currency: 'BRL'
+    });
+  }
+
+  // ===== UTM passthrough para o checkout Hotmart =====
+  // Repassa utm_source/utm_medium/utm_campaign/utm_content da URL da landing
+  // page para o link de checkout, pra dar pra rastrear qual anúncio vendeu.
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    var utmParams = new URLSearchParams();
+    utmKeys.forEach(function(k) {
+      if (params.get(k)) utmParams.set(k, params.get(k));
+    });
+    if ([...utmParams].length === 0) return;
+    document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(a) {
+      var url = new URL(a.href);
+      utmParams.forEach(function(v, k) { url.searchParams.set(k, v); });
+      a.href = url.toString();
+    });
+  })();
+
   // Registra toda saída para o checkout do Curso Mãe Organizada.
   // O listener delegado também cobre botões inseridos dinamicamente pelo agente de vendas.
   document.addEventListener('click', function(event) {
-    const link = event.target.closest('a[href*="go.hotmart.com"]');
+    const link = event.target.closest('a[href*="hotmart.com"]');
     if (!link) return;
     gtag('event', 'click_curso_hotmart', {
       link_url: link.href,
@@ -44,6 +83,15 @@
       page_path: window.location.pathname,
       transport_type: 'beacon'
     });
+    // InitiateCheckout só dispara no clique real do botão de compra —
+    // Purchase fica só pra integração de confirmação real da Hotmart (não implementada aqui).
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Curso Mãe Organizada Completo',
+        value: 97.00,
+        currency: 'BRL'
+      });
+    }
   });
 </script>
 </head>
@@ -67,12 +115,24 @@
 
 <section class="product-opening">
 <span class="offers-kicker">PDF + 10 VIDEOAULAS • PAGAMENTO ÚNICO</span>
-<h2>Organize enxoval, mala, consultas e orçamento em um só lugar.</h2>
-<p>Um plano prático para parar de garimpar informações em dezenas de posts e preparar a chegada do bebê com mais clareza e menos compras por impulso.</p>
+<h2>Seu bebê está chegando? Organize tudo sem esquecer o que realmente importa.</h2>
+<p>Um passo a passo prático para organizar enxoval, mala da maternidade, consultas, orçamento e os preparativos para a chegada do bebê — tudo em um só lugar, sem precisar garimpar informação espalhada em posts soltos.</p>
 <div class="product-cta">
-<a href="https://pay.hotmart.com/B107015298G" target="_blank" rel="nofollow noopener" class="btn-comprar">Quero começar agora — R$ 97</a>
-<p class="product-cta-nota">PDF de 16 páginas + 10 videoaulas • acesso imediato • garantia legal de 7 dias</p>
+<a href="https://pay.hotmart.com/B107015298G" target="_blank" rel="nofollow noopener" class="btn-comprar">QUERO ME ORGANIZAR PARA A CHEGADA DO MEU BEBÊ</a>
+<a href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20Curso%20M%C3%A3e%20Organizada%20Completo." target="_blank" rel="nofollow noopener" class="btn-whatsapp">Falar no WhatsApp</a>
+<p class="product-cta-nota">Acesso imediato • R$ 97 • pagamento seguro pela Hotmart</p>
 </div>
+</section>
+
+<section class="product-opening" style="padding-top:0">
+<h2 style="font-size:1.3rem">Reconhece alguma dessas perguntas?</h2>
+<ul class="product-beneficios">
+<li>"Será que estou esquecendo alguma coisa?"</li>
+<li>"Comprei coisas demais para o enxoval?"</li>
+<li>"O que realmente preciso levar para a maternidade?"</li>
+<li>"Como organizar os gastos antes do bebê nascer?"</li>
+</ul>
+<p>O Curso Mãe Organizada Completo existe pra centralizar essas respostas num só lugar — sem precisar caçar informação espalhada em posts e grupos.</p>
 </section>
 
 <p class="product-pain">Lista de enxoval espalhada em cinco abas diferentes, cada uma
@@ -86,6 +146,7 @@ da gestação às primeiras semanas com o bebê.</p>
 
 <div class="product-cta">
 <a href="https://pay.hotmart.com/B107015298G" target="_blank" rel="nofollow noopener" class="btn-comprar">Quero organizar minha gestação — R$ 97</a>
+<a href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20Curso%20M%C3%A3e%20Organizada%20Completo." target="_blank" rel="nofollow noopener" class="btn-whatsapp">Falar no WhatsApp</a>
 <p class="product-cta-nota">Pagamento seguro via Hotmart (PIX, cartão ou boleto) • acesso imediato</p>
 </div>
 
@@ -126,6 +187,7 @@ respostas espalhadas em fóruns e redes sociais</li>
 
 <div class="product-cta">
 <a href="https://pay.hotmart.com/B107015298G" target="_blank" rel="nofollow noopener" class="btn-comprar">Quero o Curso Mãe Organizada Completo — R$ 97</a>
+<a href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20Curso%20M%C3%A3e%20Organizada%20Completo." target="_blank" rel="nofollow noopener" class="btn-whatsapp">Falar no WhatsApp</a>
 </div>
 
 <h2>As 10 aulas</h2>
@@ -166,6 +228,7 @@ a sua equipe médica.</p>
 
 <div class="product-cta">
 <a href="https://pay.hotmart.com/B107015298G" target="_blank" rel="nofollow noopener" class="btn-comprar">Quero o Curso Mãe Organizada Completo — R$ 97</a>
+<a href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20Curso%20M%C3%A3e%20Organizada%20Completo." target="_blank" rel="nofollow noopener" class="btn-whatsapp">Falar no WhatsApp</a>
 </div>
 
 <h2>Seus direitos</h2>
@@ -175,6 +238,7 @@ pessoal.</p>
 
 <div class="product-cta">
 <a href="https://pay.hotmart.com/B107015298G" target="_blank" rel="nofollow noopener" class="btn-comprar">Quero o Curso Mãe Organizada Completo — R$ 97</a>
+<a href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20Curso%20M%C3%A3e%20Organizada%20Completo." target="_blank" rel="nofollow noopener" class="btn-whatsapp">Falar no WhatsApp</a>
 </div>
 
 <div class="sticky-buy-bar">
@@ -183,6 +247,9 @@ pessoal.</p>
 </div>
 
 </main>
+<a class="whatsapp-float" href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais." target="_blank" rel="nofollow noopener" aria-label="Falar no WhatsApp" onclick="window.gtag&amp;&amp;gtag('event','whatsapp_click',{origem:'blog',page_path:window.location.pathname})">
+  <span aria-hidden="true">💬</span>
+</a>
 <section class="sales-agent" data-root="" aria-label="Assistente de compras">
   <button class="sales-agent-toggle" type="button" aria-expanded="false" aria-controls="sales-agent-panel">
     <span aria-hidden="true">💗</span> Posso ajudar?
