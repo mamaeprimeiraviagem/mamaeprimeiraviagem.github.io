@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c94f7c">
+<title>Guia Completo do Enxoval do Bebê | Mamãe de Primeira Viagem</title>
+<meta name="description" content="Tudo que você precisa decidir sobre o enxoval — o que comprar, quanto comprar e como não gastar à toa — reunido num só lugar.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="google-site-verification" content="c2vEN7dlCAYa0D8hj1NTnhiCdC7OQwZxxSIDKAuZ0g8" />
+<meta name="p:domain_verify" content="bb42ac74870d2148e7da8ef9c57d9318"/>
+<link rel="canonical" href="https://mamaeprimeiraviagem.com.br/guia-enxoval-bebe.html">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mamãe de Primeira Viagem">
+<meta property="og:title" content="Guia Completo do Enxoval do Bebê | Mamãe de Primeira Viagem">
+<meta property="og:description" content="Tudo que você precisa decidir sobre o enxoval — o que comprar, quanto comprar e como não gastar à toa — reunido num só lugar.">
+<meta property="og:url" content="https://mamaeprimeiraviagem.com.br/guia-enxoval-bebe.html">
+<meta property="og:image" content="https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png">
+<meta property="og:image:alt" content="Guia Completo do Enxoval do Bebê | Mamãe de Primeira Viagem">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Guia Completo do Enxoval do Bebê | Mamãe de Primeira Viagem">
+<meta name="twitter:description" content="Tudo que você precisa decidir sobre o enxoval — o que comprar, quanto comprar e como não gastar à toa — reunido num só lugar.">
+<meta name="twitter:image" content="https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Guia Completo do Enxoval do Bebê | Mamãe de Primeira Viagem", "headline": "Guia Completo do Enxoval do Bebê | Mamãe de Primeira Viagem", "description": "Tudo que você precisa decidir sobre o enxoval — o que comprar, quanto comprar e como não gastar à toa — reunido num só lugar.", "url": "https://mamaeprimeiraviagem.com.br/guia-enxoval-bebe.html", "image": "https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png", "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Mamãe de Primeira Viagem"}, "publisher": {"@type": "Organization", "name": "Mamãe de Primeira Viagem", "logo": {"@type": "ImageObject", "url": "https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png"}}}</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%91%B6</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-92HLGPSF5Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-92HLGPSF5Q');
+
+  // ===== Meta Pixel =====
+  var META_PIXEL_ID = '1595480541923847';
+  if (META_PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
+  // ===== UTM + client_id (GA4) passthrough para o checkout Hotmart =====
+  // O client_id vai no parâmetro "src", que o Hotmart devolve como
+  // purchase.origin.src no webhook — é assim que a Cloudflare Worker
+  // (hotmart-ga4-bridge) liga a compra de volta à sessão do GA4.
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    var utmParams = new URLSearchParams();
+    utmKeys.forEach(function(k) {
+      if (params.get(k)) utmParams.set(k, params.get(k));
+    });
+    function applyToCheckoutLinks(clientId) {
+      document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(a) {
+        var url = new URL(a.href);
+        utmParams.forEach(function(v, k) { url.searchParams.set(k, v); });
+        if (clientId) url.searchParams.set('src', clientId);
+        a.href = url.toString();
+      });
+    }
+    if ([...utmParams].length > 0) applyToCheckoutLinks();
+    gtag('get', 'G-92HLGPSF5Q', 'client_id', function(clientId) {
+      if (clientId) applyToCheckoutLinks(clientId);
+    });
+  })();
+
+  // Registra toda saída para o checkout do Curso Mãe Organizada.
+  // O listener delegado também cobre botões inseridos dinamicamente pelo agente de vendas.
+  document.addEventListener('click', function(event) {
+    const link = event.target.closest('a[href*="hotmart.com"]');
+    if (!link) return;
+    gtag('event', 'click_curso_hotmart', {
+      link_url: link.href,
+      link_text: (link.textContent || '').trim(),
+      page_path: window.location.pathname,
+      transport_type: 'beacon'
+    });
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Curso Mãe Organizada Completo',
+        value: 97.00,
+        currency: 'BRL'
+      });
+    }
+  });
+</script>
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="index.html">
+    <img class="brand-logo" src="assets/img/logo-mamae-premium.png" alt="Logo Mamãe de Primeira Viagem">
+    <span>Mamãe de Primeira Viagem</span>
+  </a>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="ofertas-para-mamaes.html">Ofertas</a>
+    <a href="kit-mae-organizada.html">Curso</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="contato.html">Contato</a>
+  </nav>
+</header>
+<main>
+<h1>Guia Completo do Enxoval do Bebê</h1>
+
+
+<p class="hero-subtitulo">Tudo que você precisa decidir sobre o enxoval — o que comprar, quanto comprar e como não gastar à toa — reunido num só lugar.</p>
+<ul class="related-links">
+<li><a href="artigos/enxoval-completo-bebe.html">Enxoval Completo do Bebê: Lista Item por Item (2026)</a></li>
+<li><a href="artigos/guia-fraldas-recem-nascido.html">Guia de Fraldas: Tamanhos e Quantidade por Fase do Bebê</a></li>
+<li><a href="artigos/fralda-de-pano-x-descartavel.html">Fralda de Pano x Descartável: Prós, Contras e Economia</a></li>
+<li><a href="artigos/guia-de-roupas-por-estacao.html">Guia de Roupas do Bebê por Estação: Verão e Inverno</a></li>
+<li><a href="artigos/guarda-roupa-capsula-da-gestante.html">Guarda-Roupa Cápsula da Gestante: Peças que Combinam Entre Si</a></li>
+<li><a href="artigos/lavar-e-guardar-roupas-do-bebe.html">Como Lavar e Guardar as Roupas do Bebê Antes do Nascimento</a></li>
+<li><a href="artigos/kit-farmacia-do-bebe.html">Kit Farmácia do Bebê: Itens Essenciais</a></li>
+</ul>
+<div class="product-cta">
+<a href="checklist-enxoval-gratis.html" class="btn-secundario">Baixar Checklist Enxoval Essencial grátis (PDF)</a>
+</div>
+<div class="product-cta">
+<a href="kit-mae-organizada.html" class="btn-comprar">Conhecer o Kit Mãe Organizada Completo — R$ 97</a>
+</div>
+
+</main>
+<a class="whatsapp-float" href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais." target="_blank" rel="nofollow noopener" aria-label="Falar no WhatsApp" onclick="window.gtag&amp;&amp;gtag('event','whatsapp_click',{origem:'blog',page_path:window.location.pathname})">
+  <svg aria-hidden="true" viewBox="0 0 24 24" width="1.7rem" height="1.7rem" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.99.583 3.845 1.588 5.401L2 22l4.735-1.564A9.953 9.953 0 0 0 12.001 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.2c-1.75 0-3.375-.52-4.738-1.412l-.34-.213-3.153 1.043 1.06-3.076-.221-.352A8.183 8.183 0 0 1 3.8 12c0-4.522 3.679-8.2 8.201-8.2 4.521 0 8.2 3.678 8.2 8.2 0 4.522-3.679 8.2-8.2 8.2z"/></svg>
+</a>
+<section class="sales-agent" data-root="" aria-label="Assistente de compras">
+  <button class="sales-agent-toggle" type="button" aria-expanded="false" aria-controls="sales-agent-panel">
+    <span aria-hidden="true">💗</span> Posso ajudar?
+  </button>
+  <div class="sales-agent-panel" id="sales-agent-panel" role="dialog" aria-label="Atendimento Mamãe de Primeira Viagem" hidden>
+    <header>
+      <div><strong>Assistente Mamãe</strong><small>Escolhas com carinho e sem pressão</small></div>
+      <button class="sales-agent-close" type="button" aria-label="Fechar atendimento">×</button>
+    </header>
+    <div class="sales-agent-messages" aria-live="polite"></div>
+    <div class="sales-agent-options"></div>
+    <p class="sales-agent-disclosure">Alguns links são afiliados e podem gerar comissão, sem custo extra para você.</p>
+  </div>
+</section>
+<footer class="site-footer">
+  <p>&copy; 2026 Mamãe de Primeira Viagem. Conteúdo informativo — não substitui orientação médica.</p>
+  <p>Como Associado Amazon, este site pode receber comissões por compras qualificadas.</p>
+  <p class="social-links">
+    <a href="https://www.youtube.com/@mamaeprimeiraviagemblog" target="_blank" rel="noopener">YouTube</a> ·
+    <a href="https://www.tiktok.com/@mame.primeira.via4" target="_blank" rel="noopener">TikTok</a> ·
+    <a href="https://www.instagram.com/mamaedeprimeiraviagem.blog/" target="_blank" rel="noopener">Instagram</a> ·
+    <a href="https://br.pinterest.com/pin/1107744839624157717/" target="_blank" rel="noopener">Pinterest</a>
+  </p>
+  <p><a href="privacidade.html">Política de Privacidade</a></p>
+</footer>
+<script>
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+let installPrompt;
+window.addEventListener('beforeinstallprompt', event => {{
+  event.preventDefault();
+  installPrompt = event;
+}});
+document.getElementById('install-app')?.addEventListener('click', async () => {{
+  const help = document.getElementById('install-help');
+  if (installPrompt) {{
+    installPrompt.prompt();
+    await installPrompt.userChoice;
+    installPrompt = null;
+  }} else {{
+    help.textContent = /iphone|ipad|ipod/i.test(navigator.userAgent)
+      ? 'No Safari, toque em Compartilhar e depois em Adicionar à Tela de Início.'
+      : 'Abra o menu do navegador e escolha Instalar aplicativo ou Adicionar à tela inicial.';
+    help.hidden = false;
+  }}
+}});
+if (window.matchMedia('(display-mode: standalone)').matches) document.getElementById('install-app')?.remove();
+</script>
+<script src="sales-agent.js" defer></script>
+</body>
+</html>
