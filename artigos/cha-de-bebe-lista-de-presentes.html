@@ -33,6 +33,18 @@
   gtag('js', new Date());
   gtag('config', 'G-92HLGPSF5Q');
 
+  // ===== Meta Pixel =====
+  var META_PIXEL_ID = '1595480541923847';
+  if (META_PIXEL_ID) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', META_PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
   // Registra toda saída para o checkout do Curso Mãe Organizada.
   // O listener delegado também cobre botões inseridos dinamicamente pelo agente de vendas.
   document.addEventListener('click', function(event) {
@@ -44,6 +56,13 @@
       page_path: window.location.pathname,
       transport_type: 'beacon'
     });
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'Curso Mãe Organizada Completo',
+        value: 97.00,
+        currency: 'BRL'
+      });
+    }
   });
 </script>
 </head>
@@ -118,7 +137,7 @@ tamanhos e mantenha espaço para testar o que funciona melhor no bebê.</p>
 Uma lista digital ou uma pessoa responsável por marcar os itens escolhidos já
 resolve a maior parte das duplicações.</p>
 
-<p>Use o <a href="checklist-enxoval-essencial.html">checklist gratuito do
+<p>Use o <a href="../checklist-enxoval-gratis.html">checklist gratuito do
 enxoval</a> como base para montar sua lista.</p>
 
 <section class="article-sources">
