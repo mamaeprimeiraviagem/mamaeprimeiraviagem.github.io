@@ -561,3 +561,67 @@ body:not(:has(main > .card)) main {
 @media (max-width: 620px) {
   .sales-agent-panel { width: calc(100vw - 1rem); max-height: calc(100vh - 8rem); overflow-y: auto; }
 }
+
+/* Página "Ofertas para Mamães" — essas classes nunca tinham CSS (bug antigo,
+   imagens renderizavam no tamanho natural, sem grid). */
+.offers-hero { text-align: center; max-width: 700px; margin: 0 auto 2.5rem; }
+.offers-kicker {
+  display: inline-block; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--rosa-forte); font-size: .82rem;
+  margin-bottom: .5rem;
+}
+.offers-hero h2 { font-size: 2rem; margin: 0 0 .8rem; }
+.offers-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin: 1.2rem 0 .8rem; }
+.offers-hero small { color: var(--texto-suave); }
+
+.offer-feature {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem; align-items: center;
+  background: var(--rosa-claro); border-radius: 24px; padding: 2.2rem; margin: 0 0 2rem;
+}
+.offer-feature img { width: 100%; max-width: 280px; justify-self: center; border-radius: 14px; }
+.offer-badge {
+  display: inline-block; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  font-size: .78rem; color: var(--azul-forte); background: var(--azul-claro);
+  padding: .35rem .8rem; border-radius: 999px; margin-bottom: .6rem;
+}
+.offer-feature h2 { font-size: 1.5rem; margin: 0 0 .6rem; }
+.offer-checks { list-style: none; margin: 1rem 0; padding: 0; }
+.offer-checks li { padding: .35rem 0 .35rem 1.6rem; position: relative; font-weight: 600; }
+.offer-checks li::before { content: '✓'; position: absolute; left: 0; color: var(--rosa-forte); }
+.offer-price { margin: 1rem 0 1.2rem; }
+.offer-price span { display: block; color: var(--texto-suave); font-size: .9rem; }
+.offer-price strong { font-size: 1.5rem; color: var(--rosa-forte); }
+.btn-destaque { font-size: 1.05rem; padding: 1.1rem 1.6rem; }
+
+.amazon-offers { text-align: center; margin: 0 0 2rem; }
+.offers-intro { max-width: 600px; margin: .5rem auto 1.5rem; color: var(--texto-suave); }
+.offer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; text-align: left; }
+.offer-grid article {
+  border: 1px solid #f1dce5; border-radius: 18px; padding: 1.3rem;
+  background: #fff; box-shadow: var(--sombra);
+}
+.offer-grid span { font-weight: 700; color: var(--rosa); font-size: 1.3rem; }
+.offer-grid h3 { margin: .4rem 0 .3rem; font-size: 1.05rem; }
+.offer-grid p { color: var(--texto-suave); font-size: .9rem; margin: 0 0 .8rem; }
+.offer-grid a { color: var(--rosa-forte); font-weight: 700; text-decoration: none; }
+.offer-grid a:hover { text-decoration: underline; }
+
+.affiliate-notice {
+  background: var(--azul-claro); border-radius: 16px; padding: 1rem 1.3rem;
+  font-size: .88rem; color: var(--texto-suave); margin: 0 0 2rem;
+}
+
+.final-offer { text-align: center; padding: 2rem 0; }
+.final-offer span { display: block; color: var(--texto-suave); font-weight: 600; }
+.final-offer h2 { font-size: 1.7rem; margin: .4rem 0 1.2rem; }
+
+@media (max-width: 720px) {
+  .offer-feature { grid-template-columns: 1fr; text-align: center; padding: 1.6rem; }
+  .offer-feature img { max-width: 220px; }
+  .offer-checks { text-align: left; max-width: 320px; margin-left: auto; margin-right: auto; }
+  .offer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .offer-grid { grid-template-columns: 1fr; }
+  .offers-actions { flex-direction: column; align-items: stretch; }
+}
