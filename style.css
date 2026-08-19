@@ -134,7 +134,44 @@ body:has(main > .card) main > h1,
 body:has(main > .card) main > p,
 body:has(main > .card) main > .product-cta,
 body:has(main > .card) main > .hero-subtitulo,
-body:has(main > .card) main > .hero-ctas { grid-column: 1 / -1; }
+body:has(main > .card) main > .hero-ctas,
+body:has(main > .card) main > .sales-block { grid-column: 1 / -1; }
+
+.sales-block {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  background: linear-gradient(135deg, var(--rosa-claro) 0%, #fff 55%, var(--azul-claro) 100%);
+  border: 1px solid #f1d9e4;
+  border-radius: 24px;
+  padding: 2.2rem;
+  margin: .5rem 0;
+}
+.sales-block h2 { font-size: 1.7rem; margin: .5rem 0 .8rem; }
+.sales-block .sales-block-kicker {
+  font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--rosa-forte); font-size: .82rem;
+}
+.sales-block ul {
+  list-style: none; margin: 1rem 0 1.3rem; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: .5rem .9rem;
+}
+.sales-block ul li { font-weight: 600; font-size: .95rem; }
+.sales-block .sales-block-price {
+  font-weight: 700; font-size: 1.15rem; margin: 0 0 1rem;
+}
+.sales-block img {
+  width: 100%;
+  max-width: 260px;
+  justify-self: center;
+  border-radius: 12px;
+}
+@media (max-width: 720px) {
+  .sales-block { grid-template-columns: 1fr; text-align: center; padding: 1.6rem; }
+  .sales-block img { max-width: 200px; }
+  .sales-block ul { grid-template-columns: 1fr; text-align: left; max-width: 320px; margin-left: auto; margin-right: auto; }
+}
 
 body:has(main > .card) main > p,
 body:has(main > .card) main > .hero-subtitulo {
@@ -330,6 +367,20 @@ body:not(:has(main > .card)) main {
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin: 1rem 0 1.5rem;
+}
+
+.product-receive {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.6rem;
+  align-items: center;
+  margin: 1rem 0 1.8rem;
+}
+.product-receive-mockup { width: 100%; border-radius: 12px; }
+.product-receive .product-beneficios { margin: 0; }
+@media (max-width: 620px) {
+  .product-receive { grid-template-columns: 1fr; text-align: center; }
+  .product-receive-mockup { max-width: 200px; margin: 0 auto; }
 }
 
 .product-gallery img {
