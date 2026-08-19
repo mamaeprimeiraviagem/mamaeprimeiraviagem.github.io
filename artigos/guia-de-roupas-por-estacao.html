@@ -48,7 +48,10 @@
     fbq('track', 'PageView');
   }
 
-  // ===== UTM passthrough para o checkout Hotmart =====
+  // ===== UTM + client_id (GA4) passthrough para o checkout Hotmart =====
+  // O client_id vai no parâmetro "src", que o Hotmart devolve como
+  // purchase.origin.src no webhook — é assim que a Cloudflare Worker
+  // (hotmart-ga4-bridge) liga a compra de volta à sessão do GA4.
   (function() {
     var params = new URLSearchParams(window.location.search);
     var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
@@ -56,11 +59,17 @@
     utmKeys.forEach(function(k) {
       if (params.get(k)) utmParams.set(k, params.get(k));
     });
-    if ([...utmParams].length === 0) return;
-    document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(a) {
-      var url = new URL(a.href);
-      utmParams.forEach(function(v, k) { url.searchParams.set(k, v); });
-      a.href = url.toString();
+    function applyToCheckoutLinks(clientId) {
+      document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(a) {
+        var url = new URL(a.href);
+        utmParams.forEach(function(v, k) { url.searchParams.set(k, v); });
+        if (clientId) url.searchParams.set('src', clientId);
+        a.href = url.toString();
+      });
+    }
+    if ([...utmParams].length > 0) applyToCheckoutLinks();
+    gtag('get', 'G-92HLGPSF5Q', 'client_id', function(clientId) {
+      if (clientId) applyToCheckoutLinks(clientId);
     });
   })();
 
