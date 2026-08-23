@@ -70,17 +70,34 @@
     });
   })();
 
-  // Registra toda saída para o checkout do Curso Mãe Organizada.
-  // O listener delegado também cobre botões inseridos dinamicamente pelo agente de vendas.
-  document.addEventListener('click', function(event) {
-    const link = event.target.closest('a[href*="hotmart.com"]');
-    if (!link) return;
-    gtag('event', 'click_curso_hotmart', {
-      link_url: link.href,
-      link_text: (link.textContent || '').trim(),
-      page_path: window.location.pathname,
-      transport_type: 'beacon'
-    });
+    // ===== Evento único de saída para o checkout Hotmart =====
+  // Único ponto de disparo de "click_curso_hotmart" — usado tanto pelos links
+  // estáticos (abaixo) quanto pelo botão do widget (sales-agent.js, via
+  // window.trackHotmartClick). Só envia para destinos Hotmart autorizados,
+  // não manda a URL completa (pode carregar client_id/UTM), e ignora chamadas
+  // repetidas da mesma origem/CTA em menos de 800ms (clique duplo, listener
+  // duplicado etc).
+  var HOTMART_CHECKOUT_HOSTS = ['pay.hotmart.com'];
+  var hotmartClickLog = {};
+  function trackHotmartClick(sourceComponent, ctaName, href) {
+    var host = '';
+    try { host = new URL(href, window.location.href).host; } catch (e) { /* href inválido: não rastreia */ }
+    if (HOTMART_CHECKOUT_HOSTS.indexOf(host) === -1) return;
+
+    var key = sourceComponent + '|' + ctaName;
+    var now = Date.now();
+    if (hotmartClickLog[key] && now - hotmartClickLog[key] < 800) return;
+    hotmartClickLog[key] = now;
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'click_curso_hotmart', {
+        source_component: sourceComponent,
+        cta_name: ctaName,
+        page_path: window.location.pathname,
+        destination_host: host,
+        transport_type: 'beacon'
+      });
+    }
     if (typeof fbq === 'function') {
       fbq('track', 'InitiateCheckout', {
         content_name: 'Curso Mãe Organizada Completo',
@@ -88,6 +105,55 @@
         currency: 'BRL'
       });
     }
+  }
+  window.trackHotmartClick = trackHotmartClick;
+
+  // Cobre os links estáticos (CTAs do site). O botão do widget chama
+  // trackHotmartClick diretamente, porque não é um <a> (ver sales-agent.js).
+  document.addEventListener('click', function(event) {
+    const link = event.target.closest('a[href*="pay.hotmart.com"]');
+    if (!link) return;
+    trackHotmartClick('static_link', (link.textContent || '').trim() || 'link', link.href);
+  });
+
+  // ===== Evento único de clique em oferta afiliada (Shopee/Amazon) =====
+  // Mesmo padrão do trackHotmartClick acima: só hosts autorizados, sem URL
+  // completa (evita vazar tag de afiliado/params no evento), dedup de 800ms.
+  // Listener delegado cobre qualquer link — artigos, página de ofertas, ou um
+  // futuro link direto do widget — sem precisar marcar cada <a> um por um.
+  var AFFILIATE_NETWORK_BY_HOST = {
+    's.shopee.com.br': 'shopee',
+    'shopee.com.br': 'shopee',
+    'www.amazon.com.br': 'amazon',
+    'amazon.com.br': 'amazon'
+  };
+  var affiliateClickLog = {};
+  function trackAffiliateClick(sourceComponent, href) {
+    var host = '';
+    try { host = new URL(href, window.location.href).host; } catch (e) { /* href inválido: não rastreia */ }
+    var network = AFFILIATE_NETWORK_BY_HOST[host];
+    if (!network) return;
+
+    var key = sourceComponent + '|' + href;
+    var now = Date.now();
+    if (affiliateClickLog[key] && now - affiliateClickLog[key] < 800) return;
+    affiliateClickLog[key] = now;
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'affiliate_click', {
+        source_component: sourceComponent,
+        network: network,
+        page_path: window.location.pathname,
+        transport_type: 'beacon'
+      });
+    }
+  }
+  window.trackAffiliateClick = trackAffiliateClick;
+
+  document.addEventListener('click', function(event) {
+    const link = event.target.closest('a[href*="shopee.com.br"], a[href*="amazon.com.br"]');
+    if (!link) return;
+    trackAffiliateClick('article_or_offer_link', link.href);
   });
 </script>
 </head>

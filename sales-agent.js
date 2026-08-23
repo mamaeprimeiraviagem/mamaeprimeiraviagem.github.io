@@ -33,16 +33,9 @@
         label,
         action: () => {
           window.gtag?.('event', 'sales_agent_recommendation_click', { choice, affiliate: !!affiliate });
-          if (/^https:\/\/pay\.hotmart\.com\//i.test(href)) {
-            window.gtag?.('event', 'click_curso_hotmart', {
-              link_url: href,
-              link_text: label,
-              page_path: window.location.pathname,
-              source_component: 'sales_agent',
-              transport_type: 'beacon',
-            });
-          }
-          window.location.href = /^https?:/.test(href) ? href : root + href;
+          const destination = /^https?:/.test(href) ? href : root + href;
+          window.trackHotmartClick?.('sales_agent', choice, destination);
+          window.location.href = destination;
         },
       })),
       { label: '← Ver outras opções', action: start },
