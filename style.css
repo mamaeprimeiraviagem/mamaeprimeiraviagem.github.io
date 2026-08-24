@@ -626,3 +626,50 @@ body:not(:has(main > .card)) main {
   .offer-grid { grid-template-columns: 1fr; }
   .offers-actions { flex-direction: column; align-items: stretch; }
 }
+
+
+/* Homepage enxuta: entrada, categorias, seis artigos, ofertas e confiança. */
+.home-hero,
+.home-categories,
+.home-featured,
+.home-offers,
+.home-trust { margin: 0 0 2rem; }
+
+.home-hero {
+  padding: clamp(2rem, 6vw, 4.5rem);
+  text-align: center;
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--rosa-claro), #fff 55%, var(--azul-claro));
+  box-shadow: var(--sombra);
+}
+.home-hero h1 { max-width: 850px; margin: .55rem auto .9rem; }
+.home-hero > p { max-width: 690px; margin: 0 auto; color: var(--texto-suave); font-size: 1.12rem; }
+.home-kicker { display: block; color: var(--rosa-forte); font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.home-categories > h2, .section-heading { text-align: center; }
+.category-grid, .featured-grid, .trust-grid { display: grid; gap: 1rem; }
+.category-grid { grid-template-columns: repeat(4, 1fr); }
+.category-grid a {
+  display: grid; gap: .25rem; padding: 1.2rem; text-align: center;
+  color: var(--texto); text-decoration: none; background: #fff;
+  border: 1px solid rgba(201,79,124,.14); border-radius: 18px; box-shadow: var(--sombra);
+}
+.category-grid a:hover { transform: translateY(-2px); }
+.category-grid span { font-size: 1.7rem; }
+.category-grid small { color: var(--texto-suave); }
+.featured-grid { grid-template-columns: repeat(3, 1fr); }
+.home-offers { padding: clamp(1.7rem, 5vw, 3rem); text-align: center; border-radius: 24px; background: var(--azul-claro); }
+.home-offers > div { max-width: 700px; margin: auto; }
+.home-offers h2 { margin: .45rem 0 .6rem; }
+.trust-grid { grid-template-columns: repeat(3, 1fr); }
+.trust-grid > div { padding: 1.2rem; background: #fff; border: 1px solid #eee; border-radius: 18px; }
+.trust-grid p { margin-bottom: 0; color: var(--texto-suave); }
+.policy-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1.3rem; }
+.policy-links a { font-weight: 700; }
+@media (max-width: 800px) {
+  .category-grid, .featured-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .category-grid, .featured-grid { grid-template-columns: 1fr; }
+  .home-hero { padding: 2rem 1rem; }
+}
