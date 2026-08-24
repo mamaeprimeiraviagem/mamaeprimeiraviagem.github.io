@@ -232,6 +232,7 @@ img.article-img[src*="kit-mae-organizada-capa"] {
 img.hero-img[src*="kit-mae-organizada-capa"] {
   aspect-ratio: 1 / 1;
   height: auto;
+  max-height: 280px;
   object-fit: contain;
 }
 
