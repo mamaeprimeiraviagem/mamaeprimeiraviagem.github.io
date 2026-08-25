@@ -26,6 +26,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@context": "https://schema.org", "@type": "Article", "name": "Amamentação: Guia para as Primeiras Semanas | Mamãe de Primeira Viagem", "headline": "Amamentação: Guia para as Primeiras Semanas | Mamãe de Primeira Viagem", "description": "O que esperar da amamentação nas primeiras semanas: pega correta, frequência e sinais de alerta.", "url": "https://mamaeprimeiraviagem.com.br/artigos/amamentacao-primeiras-semanas.html", "image": "https://mamaeprimeiraviagem.com.br/assets/img/4894856.jpg", "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Mamãe de Primeira Viagem"}, "publisher": {"@type": "Organization", "name": "Mamãe de Primeira Viagem", "logo": {"@type": "ImageObject", "url": "https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png"}}, "datePublished": "2026-08-02", "dateModified": "2026-08-10"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "É normal doer no começo?", "acceptedAnswer": {"@type": "Answer", "text": "Um desconforto inicial nos primeiros dias é comum enquanto mãe e bebê\najustam a pega. Dor forte, contínua ou que piora não é normal e merece\navaliação — geralmente é sinal de pega incorreta, e ajustar a posição\nresolve a maior parte dos casos."}}, {"@type": "Question", "name": "Quanto tempo dura cada mamada?", "acceptedAnswer": {"@type": "Answer", "text": "Varia muito de bebê para bebê, de 10 a 40 minutos. O importante é\nobservar se o bebê solta o peito sozinho, satisfeito, mais do que\ncronometrar um tempo fixo."}}, {"@type": "Question", "name": "Como saber se o bebê está mamando o suficiente?", "acceptedAnswer": {"@type": "Answer", "text": "Fraldas molhadas com frequência (5 ou mais por dia após a primeira\nsemana) e ganho de peso adequado nas consultas são os sinais mais\nconfiáveis — mais confiáveis do que a sensação de \"peito cheio\" ou não."}}]}]}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%91%B6</text></svg>">
 <link rel="stylesheet" href="../style.css">
+<script src="../consent.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92HLGPSF5Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -35,7 +36,7 @@
 
   // ===== Meta Pixel =====
   var META_PIXEL_ID = '1595480541923847';
-  if (META_PIXEL_ID) {
+  if (META_PIXEL_ID && window.siteConsentAnalyticsGranted()) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;

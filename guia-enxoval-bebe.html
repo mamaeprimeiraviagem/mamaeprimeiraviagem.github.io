@@ -26,6 +26,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Guia Completo do Enxoval do Bebê | Mamãe de Primeira Viagem", "headline": "Guia Completo do Enxoval do Bebê | Mamãe de Primeira Viagem", "description": "Tudo que você precisa decidir sobre o enxoval — o que comprar, quanto comprar e como não gastar à toa — reunido num só lugar.", "url": "https://mamaeprimeiraviagem.com.br/guia-enxoval-bebe.html", "image": "https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png", "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Mamãe de Primeira Viagem"}, "publisher": {"@type": "Organization", "name": "Mamãe de Primeira Viagem", "logo": {"@type": "ImageObject", "url": "https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png"}}}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%91%B6</text></svg>">
 <link rel="stylesheet" href="style.css">
+<script src="consent.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92HLGPSF5Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -35,7 +36,7 @@
 
   // ===== Meta Pixel =====
   var META_PIXEL_ID = '1595480541923847';
-  if (META_PIXEL_ID) {
+  if (META_PIXEL_ID && window.siteConsentAnalyticsGranted()) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;

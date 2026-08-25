@@ -26,6 +26,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@context": "https://schema.org", "@type": "Article", "name": "Sono do Bebê: Rotina e Segurança no Berço | Mamãe de Primeira Viagem", "headline": "Sono do Bebê: Rotina e Segurança no Berço | Mamãe de Primeira Viagem", "description": "Recomendações práticas de segurança do sono do bebê e como começar a criar uma rotina noturna.", "url": "https://mamaeprimeiraviagem.com.br/artigos/sono-do-bebe-rotina-e-seguranca.html", "image": "https://mamaeprimeiraviagem.com.br/assets/img/37298569.jpg", "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Mamãe de Primeira Viagem"}, "publisher": {"@type": "Organization", "name": "Mamãe de Primeira Viagem", "logo": {"@type": "ImageObject", "url": "https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png"}}, "datePublished": "2026-08-02", "dateModified": "2026-08-10"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Até quando o bebê deve dormir no quarto dos pais?", "acceptedAnswer": {"@type": "Answer", "text": "Diversas sociedades de pediatria recomendam pelo menos os primeiros 6\nmeses, podendo se estender até 1 ano, sempre no berço próprio, nunca na\ncama dos pais."}}, {"@type": "Question", "name": "É normal o bebê acordar várias vezes à noite?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, principalmente nos primeiros meses — o sono do recém-nascido é\nfragmentado por natureza e ligado às mamadas frequentes. A consolidação\nem blocos mais longos costuma vir de forma gradual."}}, {"@type": "Question", "name": "Bebê pode dormir de lado ou de bruços?", "acceptedAnswer": {"@type": "Answer", "text": "Não é recomendado até que ele já consiga virar sozinho por conta\nprópria — a orientação de segurança do sono é sempre de barriga para\ncima até esse marco de desenvolvimento."}}]}]}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%91%B6</text></svg>">
 <link rel="stylesheet" href="../style.css">
+<script src="../consent.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92HLGPSF5Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -35,7 +36,7 @@
 
   // ===== Meta Pixel =====
   var META_PIXEL_ID = '1595480541923847';
-  if (META_PIXEL_ID) {
+  if (META_PIXEL_ID && window.siteConsentAnalyticsGranted()) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;

@@ -26,6 +26,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@context": "https://schema.org", "@type": "Article", "name": "Kit Farmácia do Bebê: Itens Essenciais | Mamãe de Primeira Viagem", "headline": "Kit Farmácia do Bebê: Itens Essenciais | Mamãe de Primeira Viagem", "description": "O que ter em casa para os primeiros cuidados e pequenos imprevistos com o bebê.", "url": "https://mamaeprimeiraviagem.com.br/artigos/kit-farmacia-do-bebe.html", "image": "https://mamaeprimeiraviagem.com.br/assets/img/4005590.jpg", "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Mamãe de Primeira Viagem"}, "publisher": {"@type": "Organization", "name": "Mamãe de Primeira Viagem", "logo": {"@type": "ImageObject", "url": "https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png"}}, "datePublished": "2026-08-02", "dateModified": "2026-08-10"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Posso usar remédio de adulto em dose menor?", "acceptedAnswer": {"@type": "Answer", "text": "Não — medicamentos infantis têm formulação e concentração diferentes\ndos de adulto, mesmo quando é o \"mesmo princípio ativo\". Use sempre a\nversão e a dose indicadas pelo pediatra."}}, {"@type": "Question", "name": "Preciso ter aspirador nasal mesmo sem o bebê estar resfriado?", "acceptedAnswer": {"@type": "Answer", "text": "Vale ter à mão desde o início — recém-nascidos respiram só pelo nariz e\nqualquer acúmulo de secreção, mesmo sem gripe, pode incomodar bastante\no sono e a mamada."}}, {"@type": "Question", "name": "Com que frequência revisar o kit farmácia?", "acceptedAnswer": {"@type": "Answer", "text": "A cada 2 ou 3 meses é uma boa rotina, conferindo validade dos itens e\nrepondo o que foi usado — principalmente soro fisiológico e pomada de\nassadura, que costumam acabar rápido."}}]}]}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%91%B6</text></svg>">
 <link rel="stylesheet" href="../style.css">
+<script src="../consent.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92HLGPSF5Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -35,7 +36,7 @@
 
   // ===== Meta Pixel =====
   var META_PIXEL_ID = '1595480541923847';
-  if (META_PIXEL_ID) {
+  if (META_PIXEL_ID && window.siteConsentAnalyticsGranted()) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;

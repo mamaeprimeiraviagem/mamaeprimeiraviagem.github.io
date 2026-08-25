@@ -26,6 +26,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Contato | Mamãe de Primeira Viagem", "headline": "Contato | Mamãe de Primeira Viagem", "description": "Fale com o Mamãe de Primeira Viagem para dúvidas, sugestões de pauta ou parcerias.", "url": "https://mamaeprimeiraviagem.com.br/contato.html", "image": "https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png", "inLanguage": "pt-BR", "author": {"@type": "Organization", "name": "Mamãe de Primeira Viagem"}, "publisher": {"@type": "Organization", "name": "Mamãe de Primeira Viagem", "logo": {"@type": "ImageObject", "url": "https://mamaeprimeiraviagem.com.br/assets/img/logo-mamae-premium.png"}}}</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%91%B6</text></svg>">
 <link rel="stylesheet" href="style.css">
+<script src="consent.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92HLGPSF5Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -38,7 +39,7 @@
   // a campanha. Enquanto META_PIXEL_ID estiver vazio, nenhum código de pixel é
   // carregado — não inventamos um ID.
   var META_PIXEL_ID = '1595480541923847';
-  if (META_PIXEL_ID) {
+  if (META_PIXEL_ID && window.siteConsentAnalyticsGranted()) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -176,11 +177,17 @@
 </header>
 <main>
 <h1>Contato</h1>
+<p>Fale com a equipe do <strong>Mamãe de Primeira Viagem</strong> para enviar dúvidas sobre o site, sugerir pautas, comunicar uma correção ou conversar sobre parceria.</p>
 
+<h2>E-mail</h2>
+<p><a href="mailto:contatomamae1viagem@gmail.com">contatomamae1viagem@gmail.com</a></p>
+<p>Para facilitar a resposta, informe no assunto se o contato é sobre conteúdo, privacidade, parceria ou produto digital. Não envie senhas, documentos, dados bancários ou informações médicas sensíveis.</p>
 
-<p>Dúvidas, sugestões de pauta ou parcerias: escreva para
-<a href="mailto:contatomamae1viagem@gmail.com">contatomamae1viagem@gmail.com</a>.</p>
+<h2>Privacidade e dados pessoais</h2>
+<p>Pedidos relacionados a acesso, correção ou exclusão de dados também podem ser enviados para o mesmo endereço. Consulte a <a href="privacidade.html">Política de Privacidade</a> para entender como tratamos informações fornecidas voluntariamente.</p>
 
+<h2>Importante</h2>
+<p>O blog não presta atendimento médico ou de emergência. Em caso de sintomas, urgência ou preocupação com a saúde da gestante ou do bebê, procure um serviço de saúde ou profissional habilitado.</p>
 </main>
 <a class="whatsapp-float" href="https://wa.me/5511988174510?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais." target="_blank" rel="nofollow noopener" aria-label="Falar no WhatsApp" onclick="window.gtag&amp;&amp;gtag('event','whatsapp_click',{origem:'blog',page_path:window.location.pathname})">
   <svg aria-hidden="true" viewBox="0 0 24 24" width="1.7rem" height="1.7rem" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.001 2C6.478 2 2 6.477 2 12c0 1.99.583 3.845 1.588 5.401L2 22l4.735-1.564A9.953 9.953 0 0 0 12.001 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.2c-1.75 0-3.375-.52-4.738-1.412l-.34-.213-3.153 1.043 1.06-3.076-.221-.352A8.183 8.183 0 0 1 3.8 12c0-4.522 3.679-8.2 8.201-8.2 4.521 0 8.2 3.678 8.2 8.2 0 4.522-3.679 8.2-8.2 8.2z"/></svg>
