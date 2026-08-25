@@ -170,6 +170,7 @@
     <a href="kit-mae-organizada.html">Curso</a>
     <a href="sobre.html">Sobre</a>
     <a href="contato.html">Contato</a>
+      <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Ver em inglês / View in English">🇺🇸 English</button>
   </nav>
 </header>
 <main>
@@ -249,5 +250,31 @@ document.getElementById('install-app')?.addEventListener('click', async () => {{
 if (window.matchMedia('(display-mode: standalone)').matches) document.getElementById('install-app')?.remove();
 </script>
 <script src="sales-agent.js" defer></script>
+<script>
+(function() {
+  function setGoogTransCookie(value) {
+    var host = window.location.hostname;
+    document.cookie = 'googtrans=' + value + ';path=/';
+    document.cookie = 'googtrans=' + value + ';path=/;domain=' + host;
+    document.cookie = 'googtrans=' + value + ';path=/;domain=.' + host;
+  }
+  function isTranslated() {
+    return document.cookie.indexOf('googtrans=/pt/en') !== -1;
+  }
+  var btn = document.getElementById('lang-toggle');
+  if (btn) {
+    btn.textContent = isTranslated() ? '\ud83c\udde7\ud83c\uddf7 Portugu\u00eas' : '\ud83c\uddfa\ud83c\uddf8 English';
+    btn.addEventListener('click', function() {
+      setGoogTransCookie(isTranslated() ? '/pt/pt' : '/pt/en');
+      window.location.reload();
+    });
+  }
+})();
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'en', autoDisplay: false}, 'google_translate_element');
+}
+</script>
+<div id="google_translate_element" style="display:none"></div>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </body>
 </html>

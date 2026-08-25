@@ -86,6 +86,28 @@ body {
 .online-counter { display: none; }
 .online-counter img { vertical-align: middle; border-radius: 5px; }
 
+.lang-toggle {
+  color: var(--rosa-forte);
+  background: var(--rosa-claro);
+  border: 1px solid rgba(201,79,124,.25);
+  padding: .5rem .8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: .88rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.lang-toggle:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,79,124,.18); }
+
+/* Esconde a barra/iframe que o Google Translate injeta por padrão no topo —
+   usamos nosso próprio botão em vez do widget visual dele. Classe estável nas
+   versões atuais do widget: qualquer iframe marcado "skiptranslate". */
+iframe.skiptranslate { display: none !important; }
+body { top: 0 !important; }
+.goog-tooltip, .goog-tooltip:hover { display: none !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
+
 main {
   width: min(1160px, calc(100% - 2rem));
   margin: 0 auto;
