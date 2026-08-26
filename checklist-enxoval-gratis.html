@@ -264,6 +264,14 @@ if (window.matchMedia('(display-mode: standalone)').matches) document.getElement
 <script src="sales-agent.js" defer></script>
 <script>
 (function() {
+  function loadGoogleTranslate() {
+    if (document.querySelector('script[data-google-translate]')) return;
+    var script = document.createElement('script');
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.async = true;
+    script.dataset.googleTranslate = '';
+    document.head.appendChild(script);
+  }
   function setGoogTransCookie(value) {
     var host = window.location.hostname;
     document.cookie = 'googtrans=' + value + ';path=/';
@@ -277,16 +285,22 @@ if (window.matchMedia('(display-mode: standalone)').matches) document.getElement
   if (btn) {
     btn.textContent = isTranslated() ? '\ud83c\udde7\ud83c\uddf7 Portugu\u00eas' : '\ud83c\uddfa\ud83c\uddf8 English';
     btn.addEventListener('click', function() {
-      setGoogTransCookie(isTranslated() ? '/pt/pt' : '/pt/en');
-      window.location.reload();
+      if (isTranslated()) {
+        setGoogTransCookie('/pt/pt');
+        window.location.reload();
+        return;
+      }
+      setGoogTransCookie('/pt/en');
+      btn.textContent = '🇧🇷 Português';
+      loadGoogleTranslate();
     });
   }
+  if (isTranslated()) loadGoogleTranslate();
 })();
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'en', autoDisplay: false}, 'google_translate_element');
 }
 </script>
 <div id="google_translate_element" style="display:none"></div>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </body>
 </html>
