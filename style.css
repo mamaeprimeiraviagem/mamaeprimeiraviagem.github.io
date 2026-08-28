@@ -501,8 +501,9 @@ body:not(:has(main > .card)) main {
   .site-header { padding: .65rem .8rem; }
   .site-header .logo { font-size: .98rem; }
   .brand-logo { width: 46px; height: 46px; }
-  .site-header nav { gap: .1rem; overflow-x: auto; justify-content: flex-start; }
-  .site-header nav a { padding: .45rem .62rem; white-space: nowrap; font-size: .86rem; }
+  .site-header nav { gap: .3rem; flex-wrap: wrap; justify-content: center; overflow-x: visible; }
+  .site-header nav a { padding: .45rem .62rem; white-space: nowrap; font-size: .86rem; min-height: 44px; display: inline-flex; align-items: center; }
+  .lang-toggle { min-height: 44px; }
   main { width: min(100% - 1rem, 1160px); padding-top: 1rem; }
   body:has(main > .card) main { grid-template-columns: 1fr; gap: 1rem; }
   .hero-img { border-radius: 20px; height: 280px; }
