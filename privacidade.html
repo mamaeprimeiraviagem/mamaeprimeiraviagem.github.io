@@ -84,12 +84,21 @@
         a.href = url.toString();
       });
     }
+    function whenFunnelLinksAreReady(callback) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', callback, { once: true });
+      } else {
+        callback();
+      }
+    }
     if ([...utmParams].length > 0) {
-      applyToCheckoutLinks();
-      applyToInternalFunnelLinks();
+      whenFunnelLinksAreReady(function() {
+        applyToCheckoutLinks();
+        applyToInternalFunnelLinks();
+      });
     }
     gtag('get', 'G-92HLGPSF5Q', 'client_id', function(clientId) {
-      if (clientId) applyToCheckoutLinks(clientId);
+      if (clientId) whenFunnelLinksAreReady(function() { applyToCheckoutLinks(clientId); });
     });
   })();
 
