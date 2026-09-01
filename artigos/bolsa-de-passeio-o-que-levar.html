@@ -65,7 +65,26 @@
         a.href = url.toString();
       });
     }
-    if ([...utmParams].length > 0) applyToCheckoutLinks();
+    // Mantém a campanha no percurso interno checklist -> curso. Sem isso, uma
+    // leitora que chega pelo Reel/Pinterest perde as UTMs antes do checkout.
+    // Não propaga client_id: ele é obtido novamente pelo GA4 na página seguinte.
+    function applyToInternalFunnelLinks() {
+      document.querySelectorAll('a[href]').forEach(function(a) {
+        var url;
+        try { url = new URL(a.href, window.location.href); } catch (e) { return; }
+        if (url.origin !== window.location.origin) return;
+        var path = url.pathname.replace(/[/]+$/, '');
+        if (!/(?:^|[/])(?:checklist-enxoval-gratis|kit-mae-organizada|obrigada-checklist)[.]html$/.test(path)) return;
+        utmParams.forEach(function(v, k) {
+          if (!url.searchParams.has(k)) url.searchParams.set(k, v);
+        });
+        a.href = url.toString();
+      });
+    }
+    if ([...utmParams].length > 0) {
+      applyToCheckoutLinks();
+      applyToInternalFunnelLinks();
+    }
     gtag('get', 'G-92HLGPSF5Q', 'client_id', function(clientId) {
       if (clientId) applyToCheckoutLinks(clientId);
     });
