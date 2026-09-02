@@ -280,7 +280,7 @@ body:has(main > .card) main > h1 { text-align: center; }
   box-shadow: var(--sombra);
 }
 
-/* kit-mae-organizada-capa.png é um quadrado com texto/rosto colados na borda
+/* kit-mae-organizada-capa.webp é um quadrado com texto/rosto colados na borda
    superior — o crop landscape de .article-img corta "CURSO" e a cabeça.
    Mostra a imagem inteira em vez de cropar. */
 img.article-img[src*="kit-mae-organizada-capa"] {
