@@ -49,7 +49,7 @@
   }
 
   function trackMetaViewContent() {
-    if (!/^\/artigos\/[^/]+[.]html$/.test(location.pathname) ||
+    if (!/^\/(?:artigos\/[^/]+|guia-[^/]+|ofertas-para-mamaes|kit-mae-organizada)[.]html$/.test(location.pathname) ||
         window.__metaViewContentSent || typeof window.fbq !== 'function') return;
     window.__metaViewContentSent = true;
     window.fbq('track', 'ViewContent');
