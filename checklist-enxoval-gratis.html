@@ -222,18 +222,39 @@ sono, roupas, alimentação, saída e documentos).</p>
   <label for="lead-email">E-mail *</label>
   <input id="lead-email" type="email" name="fields[email]" placeholder="seu@email.com" required>
   <button type="submit" class="btn-comprar">Quero o checklist grátis</button>
-  <p class="product-cta-nota">Sem spam. Além do checklist, você vai receber alguns e-mails com dicas práticas e, depois, uma apresentação do nosso curso. Pode cancelar quando quiser.</p>
+  <p class="product-cta-nota" data-lead-status aria-live="polite">Sem spam. Além do checklist, você vai receber alguns e-mails com dicas práticas e, depois, uma apresentação do nosso curso. Pode cancelar quando quiser.</p>
 </form>
 <script>
+var leadFormSubmitting = false;
 document.getElementById('lead-form').addEventListener('submit', function (e) {
   e.preventDefault();
+  if (leadFormSubmitting) return;
   var form = this;
-  fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
-    .finally(function () {
+  var button = form.querySelector('button[type="submit"]');
+  var status = form.querySelector('[data-lead-status]');
+  var controller = new AbortController();
+  var timeout = setTimeout(function () { controller.abort(); }, 10000);
+  leadFormSubmitting = true;
+  button.disabled = true;
+  status.textContent = 'Enviando...';
+  fetch(form.action, { method: 'POST', body: new FormData(form), signal: controller.signal })
+    .then(function (response) {
+      if (!response.ok) throw new Error('Falha HTTP');
+      return response.json();
+    })
+    .then(function (data) {
+      clearTimeout(timeout);
+      if (!data || data.success !== true) throw new Error('Cadastro não confirmado');
       if (typeof gtag === 'function') {
         gtag('event', 'generate_lead', { lead_type: 'checklist_enxoval', transport_type: 'beacon' });
       }
       window.location.href = 'obrigada-checklist.html';
+    })
+    .catch(function () {
+      clearTimeout(timeout);
+      leadFormSubmitting = false;
+      button.disabled = false;
+      status.textContent = 'Não foi possível confirmar seu cadastro. Tente novamente.';
     });
 });
 </script>
