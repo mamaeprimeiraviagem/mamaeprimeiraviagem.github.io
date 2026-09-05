@@ -48,9 +48,21 @@
     document.body.appendChild(banner);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', renderBanner, { once: true });
-  } else {
+  function trackMetaViewContent() {
+    if (!/^\/artigos\/[^/]+[.]html$/.test(location.pathname) ||
+        window.__metaViewContentSent || typeof window.fbq !== 'function') return;
+    window.__metaViewContentSent = true;
+    window.fbq('track', 'ViewContent');
+  }
+
+  function start() {
     renderBanner();
+    trackMetaViewContent();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
   }
 })();
