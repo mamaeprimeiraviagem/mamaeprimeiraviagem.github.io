@@ -101,6 +101,21 @@ body {
 }
 .lang-toggle:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,79,124,.18); }
 
+.nav-canal {
+  color: #fff;
+  background: #25D366;
+  border: none;
+  padding: .5rem .8rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: .88rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: .2s ease;
+}
+.nav-canal:hover { background: #1ebc59; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,211,102,.35); }
+
 /* Esconde a barra/iframe que o Google Translate injeta por padrão no topo —
    usamos nosso próprio botão em vez do widget visual dele. Classe estável nas
    versões atuais do widget: qualquer iframe marcado "skiptranslate". */
@@ -556,6 +571,7 @@ body:not(:has(main > .card)) main {
   .site-header nav { gap: .3rem; flex-wrap: wrap; justify-content: center; overflow-x: visible; }
   .site-header nav a { padding: .45rem .62rem; white-space: nowrap; font-size: .86rem; min-height: 44px; display: inline-flex; align-items: center; }
   .lang-toggle { min-height: 44px; }
+  .nav-canal { min-height: 44px; }
   main { width: min(100% - 1rem, 1160px); padding-top: 1rem; }
   body:has(main > .card) main { grid-template-columns: 1fr; gap: 1rem; }
   .hero-img { border-radius: 20px; height: 280px; }
