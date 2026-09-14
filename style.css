@@ -105,13 +105,14 @@ body {
   color: #fff;
   background: #25D366;
   border: none;
-  padding: .5rem .8rem;
+  padding: .4rem .65rem;
   border-radius: 999px;
-  font-weight: 700;
-  font-size: .88rem;
+  font-weight: 600;
+  font-size: .8rem;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  gap: .2rem;
   transition: .2s ease;
 }
 .nav-canal:hover { background: #1ebc59; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,211,102,.35); }
