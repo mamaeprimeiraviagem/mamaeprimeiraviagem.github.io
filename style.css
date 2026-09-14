@@ -103,19 +103,19 @@ body {
 
 .nav-canal {
   color: #fff;
-  background: #25D366;
+  background: #4CD787;
   border: none;
-  padding: .4rem .65rem;
+  padding: .32rem .55rem;
   border-radius: 999px;
   font-weight: 600;
-  font-size: .8rem;
+  font-size: .74rem;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: .2rem;
   transition: .2s ease;
 }
-.nav-canal:hover { background: #1ebc59; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,211,102,.35); }
+.nav-canal:hover { background: #34C572; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(76,215,135,.35); }
 
 /* Esconde a barra/iframe que o Google Translate injeta por padrão no topo —
    usamos nosso próprio botão em vez do widget visual dele. Classe estável nas
